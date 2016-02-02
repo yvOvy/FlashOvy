@@ -15,7 +15,7 @@ module.exports = function(grunt){
             'framework/controller/AddressController.js',
             'framework/controller/HistoryController.js'
          ],
-        dest:'assets/bin/ethos.min.js'
+        dest:'../bin/flashovy.min.js'
       }
     }
 
