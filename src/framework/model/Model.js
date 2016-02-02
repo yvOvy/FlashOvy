@@ -30,7 +30,7 @@ var Model = (function(exports) {
     function addViewState($viewId) {
         viewState[$viewId] = [new StructureObj()];
     }
-
+ 
     function isLangAvailable($l) {
         for (var i = 0; i < Model.langs.length; i++) {
             if (Model.langs[i] == $l) {
