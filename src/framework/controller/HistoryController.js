@@ -1,147 +1,100 @@
-var HistoryController = new function() {
+var HistoryController = (function(exports) {
+    var undef;
+    var _trackingString;
+    var _history = window.history;
 
-    this.getValue = function() {
-        return _value;
-    };
+    function HistoryController() {}
 
-    this.getViewID = function() {
-        return _viewID;
-    };
+    function init($trackingString) {
+        _trackingString = $trackingString || "";
 
-    this.getPath = function() {
-        var value = this.getValue();
-        if (value.indexOf('?') != -1) {
-            return value.split('?')[0];
-        } else if (value.indexOf('#') != -1) {
-            return value.split('#')[0];
+        var _startValue = _history.getState();
+
+        _history.addEventListener(HistoryControllerEvent.CHANGE, handleAddress);
+    }
+
+
+    function handleAddress($e) {
+        trace("###  pathNames  " + $e.pathNames);
+        trace("###  handleSWFAddress  " + $e.path);
+        // trace($e)
+        var _oldParams = Model.getParameters();
+        $e.parameters.string = String($e.value).split("?")[1] || "";
+        Model.setParameters($e.parameters);
+
+        if (Model.urlLangs && $e.pathNames.length && Model.isLangAvailable($e.pathNames[0]))
+        {
+            var _langNow = $e.pathNames.shift();
+            trace(":) got lang: " + _langNow);
         } else {
-            return value;
+            trace("no lang!");
         }
-    };
 
-    this.getPathNames = function() {
-        var path = this.getPath(),
-            names = path.split('/');
-        if (path.substr(0, 1) == '/' || path.length == 0)
-            names.splice(0, 1);
-        if (path.substr(path.length - 1, 1) == '/')
-            names.splice(names.length - 1, 1);
-        return names;
-    };
+        structureDataToViewState($e.pathNames, $e.path);
 
-    this.getParameter = function(param) {
-        var value = this.getValue();
-        var index = value.indexOf('?');
-        if (index != -1) {
-            value = value.substr(index + 1);
-            var p, params = value.split('&'),
-                i = params.length,
-                r = [];
-            while (i--) {
-                p = params[i].split('=');
-                if (p[0] == param)
-                    r.push(p[1]);
-            }
-            if (r.length != 0)
-                return r.length != 1 ? r : r[0];
-        }
-    };
+        if (_oldParams != Model.getParameters().string) Model.dispatchEvent(new CEvent(ModelEvent.PARAMETERS_CHANGED));
+    }
 
-    this.getParameterNames = function() {
-        var value = this.getValue();
-        var index = value.indexOf('?');
-        var names = [];
-        if (index != -1) {
-            value = value.substr(index + 1);
-            if (value != '' && value.indexOf('=') != -1) {
-                var params = value.split('&'),
-                    i = 0;
-                while (i < params.length) {
-                    names.push(params[i].split('=')[0]);
-                    i++;
+
+    function gotoHome($viewId) {
+        $viewId = typeof $viewId !== 'undefined' ? $viewId : Model.DEFAULT_VIEW;
+        Model.getURL(Model.getHomeURL($viewId), $viewId);
+    }
+
+
+    function structureDataToViewState($path, $p, $viewId) {
+        $viewId = typeof $viewId !== 'undefined' ? $viewId : Model.DEFAULT_VIEW;
+        var _tempObj = Model.getStructureData($viewId);
+        var _newViewState = [];
+
+        for (var i = 0; i < $path.length; i++) {
+            if (_tempObj) {
+                if (getChildrens($path[i], _tempObj)) {
+                    _newViewState.push(getChildrens($path[i], _tempObj));
+                    _tempObj = getChildrens($path[i], _tempObj).children;
+                } else {
+                    gotoHome($viewId);
+                    return;
                 }
             }
         }
-        return names;
-    };
 
-    this.setValue = function(value) {
-        _viewID = value.split('#')[0];
-        value = value.split('#')[1];
-        // trace(ID + " - - - - - ["+_viewID+"] " + " setValue("+value+")  from: "+_value);
-        if (typeof value == UNDEFINED) value = "";
-        if (value == 'null') value = "";
-        if (value == '/') value = "";
-        if (_value == value) return;
-        _justset = TRUE;
-        _value = value;
-
-
-        _jsDispatch.call(this, 'change');
-    };
-
-    var _jsDispatch = function(type) {
-        this.dispatchEvent(new HistoryControllerEvent(type));
-        type = type.substr(0, 1).toUpperCase() + type.substr(1);
-        if (typeof this['on' + type] == FUNCTION)
-            this['on' + type]();
-    };
-
-    this.addEventListener = function(type, listener) {
-        if (typeof _listeners[type] == UNDEFINED)
-            _listeners[type] = [];
-        _listeners[type].push(listener);
-    };
-
-    this.dispatchEvent = function(event) {
-        if (this.hasEventListener(event.type)) {
-            event.target = this;
-            for (var i = 0, l; l = _listeners[event.type][i]; i++)
-                l(event);
-            return TRUE;
+        if (!$path.length) {
+            _s = getChildrens(Model.getHomeURL($viewId), _tempObj);
+            if (_s) _newViewState.push(_s);
         }
-        return FALSE;
-    };
 
-    this.hasEventListener = function(type) {
-        return (typeof _listeners[type] != UNDEFINED && _listeners[type].length > 0);
-    };
+        if (_newViewState.length) {
 
+            while (_newViewState[_newViewState.length - 1] && _newViewState[_newViewState.length - 1].autoFirstPage && _newViewState[_newViewState.length - 1].getChildrensArray().length) {
 
-    var ID = 'historyController',
-        FUNCTION = 'function',
-        UNDEFINED = 'undefined',
-        _listeners = {},
-        TRUE = true,
-        FALSE = false,
-        _justset = TRUE,
-        _viewID = "historyController",
-        _values = [];
-    _value = "";
-}
+                var childrenArray = _newViewState[_newViewState.length - 1].getChildrensArray();
+                var num = childrenArray.length - 1;
 
-var HistoryControllerEvent = function(type) {
+                if (_newViewState[_newViewState.length - 1].randomPage && num > 0) {
 
-    this.toString = function() {
-        return '[object HistoryControllerEvent]';
-    };
+                    var random = Math.round(Math.random() * num);
+                    _s = getChildrens(childrenArray[random].url, _newViewState[_newViewState.length - 1].children);
+                } else {
+                    _s = getChildrens(childrenArray[0].url, _newViewState[_newViewState.length - 1].children);
+                }
+                if (_s) _newViewState.push(_s);
+            }
+        }
+        Model.setViewState(_newViewState, $viewId);
 
-    this.type = type;
-    this.target = [HistoryController][0];
-    this.value = Model.lang.getValue();
-    this.path = Model.lang.getPath();
-    this.pathNames = Model.lang.getPathNames();
-    this.parameters = {};
+    }
 
-    var _parameterNames = Model.lang.getParameterNames();
-    for (var i = 0, l = _parameterNames.length; i < l; i++)
-        this.parameters[_parameterNames[i]] = Model.lang.getParameter(_parameterNames[i]);
+    function getChildrens($url, $obj) {
+        for (var i in $obj) {
+            if ($url == $obj[i].url) {
+                return $obj[i];
+            }
+        }
+        return null;
+    }
 
-    this.parameterNames = _parameterNames;
+    exports.init = init;
+    return exports;
 
-}
-
-HistoryControllerEvent.INIT = 'init';
-HistoryControllerEvent.CHANGE = 'change';
-HistoryControllerEvent.INTERNAL_CHANGE = 'internalChange';
-HistoryControllerEvent.EXTERNAL_CHANGE = 'externalChange';
+}({}));
