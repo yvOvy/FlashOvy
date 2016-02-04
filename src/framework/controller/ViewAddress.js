@@ -87,26 +87,18 @@ var ViewAddress = new function() {
             this['on' + type]();
     };
 
-    this.addEventListener = function(type, listener) {
-        if (typeof _listeners[type] == UNDEFINED)
-            _listeners[type] = [];
-        _listeners[type].push(listener);
-    };
+    function removeEventListener($type, $listener, $scope) {
+        _dispatcher.removeEventListener($type, $listener, $scope);
+    }
 
-    this.dispatchEvent = function(event) {
-        if (this.hasEventListener(event.type)) {
-            event.target = this;
-            for (var i = 0, l; l = _listeners[event.type][i]; i++)
-                l(event);
-            return TRUE;
-        }
-        return FALSE;
-    };
+    function addEventListener($type, $listener, $scope) {
+        _dispatcher.addEventListener($type, $listener, $scope);
+    }
 
-    this.hasEventListener = function(type) {
-        return (typeof _listeners[type] != UNDEFINED && _listeners[type].length > 0);
-    };
+    function dispatchEvent($event) {
+        _dispatcher.dispatchEvent($event);
 
+    }
 
     var ID = 'viewaddress',
         FUNCTION = 'function',
