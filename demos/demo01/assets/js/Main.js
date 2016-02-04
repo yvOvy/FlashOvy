@@ -20,6 +20,7 @@
             type: "json",
             callback: loadAssets
         })
+
     }
 
     function loadAssets(data) {

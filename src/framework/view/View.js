@@ -21,6 +21,7 @@ var View = Class.extend({
         window.addEventListener("resize", this.resizeEventID);
         window.addEventListener("orientationchange", this.orientationEventID);
 
+
         this.resize();
     },
 

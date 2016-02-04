@@ -8,6 +8,10 @@ var RectPage = Page.extend({
 
 	initContent: function() {
 
+		this._container.style.backgroundColor = ColorUtils.blendARGBColor("#50C8EA","#c3cc0e",this._data.depth/5)
+
+		trace(this._container);
+
 		this.h = Dom.create("h1", this._container, null, {html:this._data.title});
 		TweenMax.from(this._container, .5, {x:240, alpha:0, delay:.2});
 		trace("RectPage !!!  initContent");
@@ -18,7 +22,6 @@ var RectPage = Page.extend({
 	},
 
 	destroyPage:function(){
-	 	this._elem.removeChild(this.rect);
 		this._super();
 	}
 
