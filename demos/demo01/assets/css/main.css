@@ -24,7 +24,7 @@ body {
     height: 100%;
     padding: 0;
     margin: 0;
-    background: #000; 
+    background: #000;
 }
 
 body {
@@ -84,13 +84,14 @@ h4 {
 }
 
 li {
+    margin-left: 1rem;
     display: list-item;
-
     text-align: -webkit-match-parent;
 }
 
 ol,
 ul {
+    margin-left: 2rem;
     list-style: none;
 }
 
@@ -121,7 +122,19 @@ ul {
     backface-visibility: visible;
 }
 
-.FlashOvyRect {
+.menu{
+  padding:3rem;
+  position: absolute;
+  top:0;
+  right:0;
+  z-index:1000;
+}
+
+.menu a{
+  color:
+}
+
+.RectPage {
     background-color: #50C8EA;
     width:290px;
     height:290px;
@@ -271,7 +284,7 @@ ul {
 }
 .footerTxt {
     font-size: 12px;
-    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.28); 
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.28);
 }
 
 
@@ -668,7 +681,7 @@ ul {
             transition: width .5s ease-in-out;
 }
 
-.MirrorElemCaptionSelected { 
+.MirrorElemCaptionSelected {
     color:#b8a866;
     -webkit-transition: color .5s ease-in-out;
        -moz-transition: color .5s ease-in-out;
@@ -978,13 +991,13 @@ ul {
 
 .TabBtn{
     display: inline-block;
-    font-size: 16.4px; 
+    font-size: 16.4px;
     margin: 0 1%;
 }
 
 .MapBtn{
     display: block;
-    font-size: 12px; 
+    font-size: 12px;
 }
 
 .MapBtn #captionElem{
@@ -1178,7 +1191,7 @@ ul {
     font-family: "Playfair display", serif;
 
     color: #cabc83;
-    border-bottom: 1px solid #cabc83; 
+    border-bottom: 1px solid #cabc83;
 }
 
 
@@ -1193,7 +1206,7 @@ ul {
     background-size: cover;
 }
 
-.SubSectionBtns { 
+.SubSectionBtns {
     display: inline;
 
     text-align: center;
@@ -1295,7 +1308,7 @@ ul {
     margin: auto;
     font-family: "Playfair display SC", serif;
     text-align: center;
-    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.28); 
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.28);
 }
 .FooterMovieBtn .FooterMovieArrow {
     position: absolute;
@@ -1566,30 +1579,30 @@ ul {
 }
 
 .SectionNumbers {
-    min-height:20px;      
-    background-color: #f7f7f7;   
+    min-height:20px;
+    background-color: #f7f7f7;
 }
 .NumberIconImage {
-    min-height:20px;         
+    min-height:20px;
 }
 .NumberIconDesc {
-    min-height:20px;  
+    min-height:20px;
     font-family: "Playfair display", serif;
-    font-size: 14px;     
+    font-size: 14px;
     text-align: center;
     letter-spacing: .06em;
-    color: #000;  
+    color: #000;
 }
 
 .NumbersListElem {
     float: left;
     width: 33%;
     margin: 8px 0;
-    margin-bottom: 60px;        
+    margin-bottom: 60px;
 }
 
 .SectionNextPage {
-    height:0;         
+    height:0;
 }
 
 .GotoContainer {
@@ -1657,11 +1670,11 @@ ul {
 }
 
 .SoundBtnBg {
-    
+
 }
 .SoundBtn {
     color:#cabc83;
-    
+
     font-family: "Playfair display", serif;
     float: right;
     font-size: 14px;
@@ -1791,7 +1804,7 @@ ul {
     -webkit-transition: opacity .1s ease-in-out;
        -moz-transition: opacity .1s ease-in-out;
          -o-transition: opacity .1s ease-in-out;
-            transition: opacity .1s ease-in-out; 
+            transition: opacity .1s ease-in-out;
     opacity: 1;
 }
 
@@ -1804,7 +1817,7 @@ ul {
     left: 13%;
 }
 .firstLang {
-    
+
     border-right: 1px solid rgba(255, 255, 255, .3);
 }
 .currentLang {
@@ -1918,7 +1931,7 @@ body:after {
         margin: 0px 5%;
     }*/
 
-    
+
 }
 
 @media (max-width: 1079.5px) and (min-width: 767.5px) {
@@ -1994,7 +2007,7 @@ body:after {
         margin: 0 5%;
     }
 
-    
+
     .ContactGroupName {
         margin-top: 16px;
     }
@@ -2005,7 +2018,7 @@ body:after {
     .even{
         width:100%;
     }
-    
+
     .ContactGroup .odd{
         width: auto;
         margin-right: 10%;
@@ -2013,7 +2026,7 @@ body:after {
     .ContactGroup .even{
         width:50%;
     }
-    
+
 }
 
 @media (max-width: 1240px) {
@@ -2070,7 +2083,7 @@ body:after {
     }
 
     .GallerySmallDescContainer {
-        
+
     }
 
     .Tbhow {
@@ -2157,7 +2170,7 @@ body:after {
     }
 
     .NormalImage{
-        
+
     }
     .DimmedImage{
         visibility: none;
@@ -2169,7 +2182,7 @@ body:after {
     .MainGallery rect{
         opacity:0;
     }
-    
+
     .MainGallery #arrowNext{
          margin-left: -80px;
     }
@@ -2264,7 +2277,7 @@ body:after {
     }
     .SpaceTableElem{
         width: 50%;
-    }  
+    }
     .SpaceDescRect {
         width: 100%;
         padding: 6px 4px;
@@ -2337,11 +2350,11 @@ a.itsAwrapLink:hover {
 }
 
 .trace { font-family: Arial; background-color:#383838; margin: 2px; text-align:left; color: #F6F6F6; font-size:10pt;  padding:6px; border: thin solid #EFEFEF}
-.traceRed {background-color:#FEF1F8; margin: 4px; text-align:center; color: #55616F; font-size:12pt;  padding:6px; border: thin solid #D31671} 
+.traceRed {background-color:#FEF1F8; margin: 4px; text-align:center; color: #55616F; font-size:12pt;  padding:6px; border: thin solid #D31671}
 .traceBlue {background-color:#BFFBFF; margin: 2px; text-align:center; color: #55616F; font-size:12pt;  padding:6px; border: thin solid #EFEFEF}
 .traceGreen {background-color:#C5E8D8; margin: 2px; text-align:center; color: #55616F; font-size:12pt;  padding:6px; border: thin solid #EFEFEF}
 .traceFromLog {background-color:#8B87AA; margin: 2px; text-align:center; color: #F4F7FB; font-size:10pt;  padding:6px; border: thin solid #EFEFEF}
 .traceNews {background-color:#E0385F; margin: 2px; text-align:center; color: #FFF7F9; font-size:10pt;  padding:6px; border: thin solid #E52750}
 .tracePurple {background-color:#b27bc6; margin: 2px; text-align:center; color: #f6f6f6; font-size:10pt;  padding:6px; border: thin solid #d870ff}
-.traceAdmin {background-color:#E07DA3; margin: 2px; text-align:center; color: #EDFAFC; font-size:10pt;  padding:6px; border: thin solid #ED4082} 
-.traceOrange{background-color:#fdde73; margin: 2px; text-align:center; color: #6a6a6a; font-size:10pt;  padding:6px; border: thin solid #ffb81f} 
+.traceAdmin {background-color:#E07DA3; margin: 2px; text-align:center; color: #EDFAFC; font-size:10pt;  padding:6px; border: thin solid #ED4082}
+.traceOrange{background-color:#fdde73; margin: 2px; text-align:center; color: #6a6a6a; font-size:10pt;  padding:6px; border: thin solid #ffb81f}

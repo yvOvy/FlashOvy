@@ -5,9 +5,9 @@ var View = Class.extend({
     },
 
     initView: function() {
-        elem = Dom.create("div", document.body, [".View", "view"]);
+        this.elem = Dom.create("div", document.body, [".View", "view"]);
 
-        this.pmContainer = Dom.create("div", elem, [".PageManager", "#mainPM"]);
+        this.pmContainer = Dom.create("div", this.elem, [".PageManager", "#mainPM"]);
         this.pmContainer.style.zIndex = 50;
         this.pm = new PageManager(this.pmContainer);
         this.pm.start();

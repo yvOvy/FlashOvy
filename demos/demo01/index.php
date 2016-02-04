@@ -2,7 +2,7 @@
     <head>
     	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    	<meta charset="utf-8">   
+    	<meta charset="utf-8">
         <title>FlashOvy Demo 01</title>
 		<meta name="author" content="">
 		<meta name="googlebot" content="noindex">
@@ -13,10 +13,10 @@
 		<link rel="icon" type="image/gif" href="/assets/icons/favicon.png" />
 		<meta name="apple-mobile-web-app-status-bar-style"   content="black-translucent" />
 		<meta name="format-detection" content="telephone=no">
-		  
+
     </head>
     <body>
-    	<link href="assets/css/main.css" rel="stylesheet">   
+    	<link href="assets/css/main.css" rel="stylesheet">
 
 		<!--libs -->
     	<script src="assets/js/lib/greensock/minified/TweenMax.min.js"></script>
@@ -24,6 +24,7 @@
     	<script src="assets/js/lib/swfaddress/swfaddress.js"></script>
 
         <script src="../../src/framework/Class.js"></script>
+        <script src="../../src/framework/utils/ColorUtils.js"></script>
         <script src="../../src/framework/utils/Utils.js"></script>
         <script src="../../src/framework/utils/Trace.js"></script>
         <script src="../../src/framework/utils/assets/AssetManager.js"></script>
@@ -43,8 +44,8 @@
         <script src="../../src/framework/controller/HistoryController.js"></script>
        	<script src="../../src/framework/structure/StructureLoader.js"></script>
 		<script src="../../src/framework/structure/StructureObj.js"></script>
-		<script src="../../src/framework/structure/StructureUtils.js"></script> 
-		<!--min 
+		<script src="../../src/framework/structure/StructureUtils.js"></script>
+		<!--min
     	<script src="flashovy.min.js"></script>
 		-->
     	<!--utils -->
@@ -53,6 +54,7 @@
 
 		<!--site -->
         <script src="assets/js/view/ui/Preloader360.js"></script>
+        <script src="assets/js/view/ui/StructMenu.js"></script>
         <script src="assets/js/model/AppModel.js"></script>
         <script src="assets/js/view/AppView.js"></script>
         <script src="assets/js/view/pages/RectPage.js"></script>
