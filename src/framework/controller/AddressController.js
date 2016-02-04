@@ -26,7 +26,7 @@
 
     function handleViewAddress($e) {
         if (Model.PMS[ViewAddress.getViewID()]) {
-            // TO DO - ViewAddress parameters 
+            // TO DO - ViewAddress parameters
             // $e.parameters.string = String($e.value).split("?")[1] || ""
             // Model.setParameters($e.parameters, ViewAddress.getViewID());
             // trace("ViewAddress.getViewID() "+ViewAddress.getViewID())
