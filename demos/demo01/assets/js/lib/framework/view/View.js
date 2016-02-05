@@ -9,7 +9,7 @@ var View = Class.extend({
 
         this.pmContainer = Dom.create("div", this.elem, [".PageManager", "#mainPM"]);
         this.pmContainer.style.zIndex = 50;
-        this.pm = new PageManager(this.pmContainer);
+        this.pm = new PageManager(this.pmContainer,0,true,true);
         this.pm.start();
 
         Model.addEventListener(ModelEvent.DEFAULT_VIEW_CHANGED, this.viewChangedHandler.bind(this));

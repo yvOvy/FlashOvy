@@ -27,6 +27,7 @@
         AppModel.md = new MobileDetect(window.navigator.userAgent);
         AppModel.mobile = AppModel.md.mobile();
         Model.setStructureData(StructureUtils.getStructureFromJSON(JSON.parse(data)));
+        Model.setStructureData(StructureUtils.getStructureFromJSON(JSON.parse(data)),Model.SECOND_VIEW);
 
         var _preloaderDiv = document.createElement("div");
         Utils.SCROLLBAR_WIDTH = Utils.getScrollbarWidth();

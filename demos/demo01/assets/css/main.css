@@ -150,6 +150,12 @@ ul {
     position: relative;
 }
 
+#secondPM{
+    position: absolute;
+    left:50%;
+    top:0;
+}
+
 #MenuElemView {
     position: fixed;
 }
