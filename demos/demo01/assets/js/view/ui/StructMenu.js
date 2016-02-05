@@ -36,6 +36,18 @@ var StructMenu = EventDispatcher.extend({
 
     createLi:function(url,name,parent){
       var li = Dom.create("li", parent);
-      var a = Dom.create("a",li,null,{href:this._hash+url,html:name});
+      var a = Dom.create("a",li,null,{href:url,html:name});
+      a.addEventListener("click",this.clickHandler.bind(this))
+    },
+
+
+    clickHandler:function(e){
+      e.preventDefault();
+      AddressController.getURL(e.target.getAttribute("href"));
     }
+
+
+
+
+
 });
