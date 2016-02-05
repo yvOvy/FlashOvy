@@ -1,7 +1,7 @@
 var AppView = View.extend({
 
     init: function() {
-        this.initView();
+        this._super();
         this.initMenu();
     },
 
