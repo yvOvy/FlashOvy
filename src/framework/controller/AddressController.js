@@ -109,7 +109,7 @@
 
     function gotoHome($viewId) {
         $viewId = typeof $viewId !== 'undefined' ? $viewId : Model.DEFAULT_VIEW;
-        Model.getURL(Model.getHomeURL($viewId), $viewId);
+        getURL(Model.getHomeURL($viewId), $viewId);
     }
 
 

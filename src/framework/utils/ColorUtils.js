@@ -4,6 +4,27 @@ var ColorUtils = (function(exports) {
 		function blendRGBColor(c1,c2,t)
 		{
 
+			var _colorFrom =  {r:c1>>16, g:(c1 >> 8)&0xff, b:c1&0xff, hex:c1};
+			var _colorTo =  {r:c2>>16, g:(c2 >> 8)&0xff, b:c2&0xff, hex:c2};
+
+
+			var _randomColor =(_colorFrom.r+(_colorTo.r-_colorFrom.r)*t) << 16 | (_colorFrom.g+(_colorTo.g-_colorFrom.g)*t) << 8 | (_colorFrom.b+(_colorTo.b-_colorFrom.b)*t)
+			return _randomColor;
+		}
+
+		function blendARGBColor(c1,c2,t)
+		{
+			var _colorFrom =  {a:c1>>24, r:(c1>>16)&0xff, g:(c1 >> 8)&0xff, b:c1&0xff, hex:c1};
+			var _colorTo =  {a:c1>>24,r:(c1>>16)&0xff, g:(c2 >> 8)&0xff, b:c2&0xff, hex:c2};
+
+
+			var _randomColor =(_colorFrom.a+(_colorTo.a-_colorFrom.a)*t)<< 24 | (_colorFrom.r+(_colorTo.r-_colorFrom.r)*t) << 16 | (_colorFrom.g+(_colorTo.g-_colorFrom.g)*t) << 8 | (_colorFrom.b+(_colorTo.b-_colorFrom.b)*t)
+			return _randomColor;
+		}
+
+		function blendRGBColorCss(c1,c2,t)
+		{
+
       var _colorFrom =  /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(c1);
       _colorFrom = {r:parseInt(_colorFrom[1], 16),g:parseInt(_colorFrom[2], 16),b:parseInt(_colorFrom[3], 16)}
 			var _colorTo =  /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(c2);
@@ -14,7 +35,7 @@ var ColorUtils = (function(exports) {
 			return "#"+displayInHex(_randomColor);
 		}
 
-		function blendARGBColor(c1,c2,t)
+		function blendARGBColorCss(c1,c2,t)
 		{
   		var _colorFrom =  /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(c1);
       _colorFrom = {r:parseInt(_colorFrom[1], 16),g:parseInt(_colorFrom[2], 16),b:parseInt(_colorFrom[3], 16)}
