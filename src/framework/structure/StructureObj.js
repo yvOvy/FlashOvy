@@ -4,19 +4,19 @@
  */
 
 var StructureObj = (function() {
-	
+
 	var undef;
 
     function StructureObj() {}
 	var _p = StructureObj.prototype;
-	
+
 	_p.id = 0;
-	_p.name = ""; 
-	_p.url = ""; 
-	_p.className = ""; 
-	
-	_p.depth = 0 
-	_p.parent_id; 
+	_p.name = "";
+	_p.url = "";
+	_p.className = "";
+
+	_p.depth = 0
+	_p.parent_id;
 	_p.fullUrl = "";
 	_p.children;
 	_p.parent;
@@ -24,8 +24,8 @@ var StructureObj = (function() {
 	_p.randomPage = false;
 	_p.hidden = false;
 	_p.JSON;
-	
-	function getChildrensArray(){ 
+
+	function getChildrenArray(){
 		var _a = [];
 		for(var k in this.children)
 		{
@@ -35,7 +35,7 @@ var StructureObj = (function() {
 			}
 		}
 		return _a
-		// return Utils.orderArray(childrens); 
+		// return Utils.orderArray(childrens);
 	}
 	function getAsArray(){
 		var _a = [];
@@ -48,8 +48,8 @@ var StructureObj = (function() {
 		}
 		return _a
 	};
-		
-	_p.getChildrensArray = getChildrensArray;
+
+	_p.getChildrenArray = getChildrenArray;
 	_p.getAsArray = getAsArray;
 	return StructureObj
 })();

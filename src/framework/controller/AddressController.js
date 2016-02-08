@@ -120,9 +120,9 @@
 
         for (var i = 0; i < $path.length; i++) {
             if (_tempObj) {
-                if (getChildrens($path[i], _tempObj)) {
-                    _newViewState.push(getChildrens($path[i], _tempObj));
-                    _tempObj = getChildrens($path[i], _tempObj).children;
+                if (getChildren($path[i], _tempObj)) {
+                    _newViewState.push(getChildren($path[i], _tempObj));
+                    _tempObj = getChildren($path[i], _tempObj).children;
                 } else {
                     gotoHome($viewId);
                     return;
@@ -131,23 +131,23 @@
         }
 
         if (!$path.length) {
-            _s = getChildrens(Model.getHomeURL($viewId), _tempObj);
+            _s = getChildren(Model.getHomeURL($viewId), _tempObj);
             if (_s) _newViewState.push(_s);
         }
 
         if (_newViewState.length) {
 
-            while (_newViewState[_newViewState.length - 1] && _newViewState[_newViewState.length - 1].autoFirstPage && _newViewState[_newViewState.length - 1].getChildrensArray().length) {
+            while (_newViewState[_newViewState.length - 1] && _newViewState[_newViewState.length - 1].autoFirstPage && _newViewState[_newViewState.length - 1].getChildrenArray().length) {
 
-                var childrenArray = _newViewState[_newViewState.length - 1].getChildrensArray();
+                var childrenArray = _newViewState[_newViewState.length - 1].getChildrenArray();
                 var num = childrenArray.length - 1;
 
                 if (_newViewState[_newViewState.length - 1].randomPage && num > 0) {
 
                     var random = Math.round(Math.random() * num);
-                    _s = getChildrens(childrenArray[random].url, _newViewState[_newViewState.length - 1].children);
+                    _s = getChildren(childrenArray[random].url, _newViewState[_newViewState.length - 1].children);
                 } else {
-                    _s = getChildrens(childrenArray[0].url, _newViewState[_newViewState.length - 1].children);
+                    _s = getChildren(childrenArray[0].url, _newViewState[_newViewState.length - 1].children);
                 }
                 if (_s) _newViewState.push(_s);
             }
@@ -156,7 +156,7 @@
 
     }
 
-    function getChildrens($url, $obj) {
+    function getChildren($url, $obj) {
         for (var i in $obj) {
             if ($url == $obj[i].url) {
                 return $obj[i];

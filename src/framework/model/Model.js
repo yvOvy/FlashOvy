@@ -134,6 +134,30 @@ var Model = (function(exports) {
         return _baseURL;
     }
 
+    function getDataByUrl($fullUrl,$viewID) {
+  		$viewID = $viewID || Model.DEFAULT_VIEW;
+			if ($fullUrl.indexOf("/") == 0) $fullUrl = $fullUrl.substr(1);
+			if ($fullUrl.lastIndexOf("/") == $fullUrl.length - 1) $fullUrl = $fullUrl.substring(0,$fullUrl.length - 1);
+
+			var _path = $fullUrl.split("/");
+			var _tempObj = getStructureData($viewID);
+			var _newViewState = [];
+			var _s;
+
+			for (var i = 0; i < _path.length; i++) {
+				if (_tempObj) {
+					if (getChildren(_path[i], _tempObj)) {
+						_newViewState.push(getChildren(_path[i], _tempObj));
+						_tempObj = getChildren(_path[i], _tempObj).children;
+					}else {
+						return null;
+					}
+				}
+			}
+
+			return _newViewState.pop();
+  }
+
     function removeEventListener($type, $listener, $scope) {
         _dispatcher.removeEventListener($type, $listener, $scope);
     }
@@ -162,6 +186,7 @@ var Model = (function(exports) {
     exports.getHomeURL = getHomeURL;
     exports.setParameters = setParameters;
     exports.getParameters = getParameters;
+    exports.getDataByUrl = getDataByUrl;
     exports.removeEventListener = removeEventListener;
     exports.addEventListener = addEventListener;
     exports.dispatchEvent = dispatchEvent;
