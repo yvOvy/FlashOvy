@@ -22,6 +22,7 @@
     	  <script src="/assets/js/lib/greensock/minified/TweenMax.min.js"></script>
         <script src="/assets/js/lib/mobile-detect.min.js"></script>
     	  <script src="/assets/js/lib/swfaddress/swfaddress.js"></script>
+    	  <script src="/assets/js/lib/pixi/pixi.min.js"></script>
 
 
         <script src="/assets/js/lib/framework/Class.js"></script>
@@ -41,7 +42,9 @@
         <script src="/assets/js/lib/framework/model/Model.js"></script>
         <script src="/assets/js/lib/framework/view/View.js"></script>
         <script src="/assets/js/lib/framework/view/page/Page.js"></script>
+        <script src="/assets/js/lib/framework/view/page/PixiPage.js"></script>
         <script src="/assets/js/lib/framework/view/pageManager/PageManager.js"></script>
+        <script src="/assets/js/lib/framework/view/pageManager/PixiPageManager.js"></script>
         <script src="/assets/js/lib/framework/controller/AddressController.js"></script>
 
        	<script src="/assets/js/lib/framework/structure/StructureLoader.js"></script>
@@ -57,8 +60,11 @@
 		<!--site -->
         <script src="/assets/js/view/ui/Preloader360.js"></script>
         <script src="/assets/js/view/ui/StructMenu.js"></script>
+        <script src="/assets/js/view/ui/PixiDisplayList.js"></script>
         <script src="/assets/js/model/AppModel.js"></script>
+        <script src="/assets/js/view/PixiView.js"></script>
         <script src="/assets/js/view/AppView.js"></script>
+        <script src="/assets/js/view/pages/PixiRectPage.js"></script>
         <script src="/assets/js/view/pages/RectPage.js"></script>
         <script src="/assets/js/Main.js"></script>
     </body>
