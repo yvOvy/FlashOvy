@@ -79,7 +79,9 @@ var ColorUtils = (function(exports) {
 		}
 
     exports.blendRGBColor = blendRGBColor;
+    exports.blendRGBColorCss = blendRGBColorCss;
     exports.blendARGBColor = blendARGBColor;
+    exports.blendARGBColorCss = blendARGBColorCss;
     exports.displayInHex = displayInHex;
     exports.extractRed = extractRed;
     exports.extractGreen = extractGreen;

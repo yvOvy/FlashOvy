@@ -13,8 +13,8 @@
         AppModel.live = document.location.hostname.split("live.com.pl").length > 1;
 
         // var _structureURL = "wp/?json=getPage&page_id=554&children=1";
-        // var _structureURL = "/assets/data/structure.json";
-        var _structureURL = "/assets/data/structurePixi.json";
+        var _structureURL = "/assets/data/structure.json";
+        // var _structureURL = "/assets/data/structurePixi.json";
         // var _structureURL = "http://seatx.gsub.pl/wp/?json=getPage&page_id=554&children=1";
         StructureLoader.load({
             url: _structureURL,
@@ -70,8 +70,8 @@
     }
 
     function dataCompleteHandler() {
-        // var _view = new AppView();
-        var _view = new PixiView();
+        var _view = new AppView();
+        // var _view = new PixiView();
     }
 
     var mainClass = {};
