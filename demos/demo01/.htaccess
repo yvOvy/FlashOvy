@@ -4,7 +4,7 @@ RewriteEngine on
 # Sets the base folder of the SEO sample
 Options +FollowSymLinks
 RewriteEngine On
-RewriteBase /flashovy/demos/demo01
+RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
