@@ -1,6 +1,7 @@
 var HistoryAddress = (function(exports) {
 
         var  _strict = true;
+        var  _prefix = "vg";
         var  _value = window.location.pathname;
         var  _data = {};
         var  _title = '';
@@ -23,6 +24,7 @@ var HistoryAddress = (function(exports) {
         }
 
         function strictCheck(value, force) {
+              
               if (force) {
                   if (value.substr(0, 1) != '/') value = '/' + value;
               } else {
@@ -37,17 +39,27 @@ var HistoryAddress = (function(exports) {
               if (value == 'undefined' || value == null) value = '';
               if(value =="/") value = "";
               if (_value == value) return;
-
-
+              if(_prefix != ""){
+                value = value.replace(/^\/|\/$/g, '');
+                value =  _prefix + "/" + value;
+              }
+              value = value.replace(/^\/|\/$/g, '');
               _value = value
-              _history.pushState(data,title,strictCheck(_value,true))
+              trace("!!! pushState !  "+strictCheck(_value,true))
+              _history.pushState(data,title,strictCheck(_value,true));
 
               dispatchEvent(new HistoryAddressEvent(HistoryAddressEvent.CHANGE));
+              trace(_history);
           }
 
 
           function getValue() {
-              return strictCheck(_value || '', false);
+              var _path = strictCheck(_value || '', false);
+              var names = _path.split('/');
+              if(names.length && _prefix == names[0]){
+                _path = _path.replace(_prefix + "/", "");
+              }
+              return _path;
           }
 
 

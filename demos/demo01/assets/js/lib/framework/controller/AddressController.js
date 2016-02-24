@@ -24,9 +24,6 @@
 
 
     function handleHistoryController($e) {
-      trace("###  pathNames  " + $e.pathNames);
-      trace("###  handleHistoryAddress  " + $e.path);
-
       var _oldParams = Model.getParameters();
       $e.parameters.string = String($e.value).split("?")[1] || "";
       Model.setParameters($e.parameters);
@@ -34,9 +31,8 @@
       if (Model.urlLangs && $e.pathNames.length && Model.isLangAvailable($e.pathNames[0]))
       {
           var _langNow = $e.pathNames.shift();
-          trace(":) got lang: " + _langNow);
       } else {
-          trace("no lang!");
+          //trace("no lang!");
       }
 
       structureDataToViewState($e.pathNames, $e.path);
@@ -60,9 +56,6 @@
     }
 
     function handleSWFAddress($e) {
-        trace("###  pathNames  " + $e.pathNames);
-        trace("###  handleSWFAddress  " + $e.path);
-        // trace($e)
         var _oldParams = Model.getParameters();
         $e.parameters.string = String($e.value).split("?")[1] || "";
         Model.setParameters($e.parameters);
@@ -70,9 +63,8 @@
         if (Model.urlLangs && $e.pathNames.length && Model.isLangAvailable($e.pathNames[0]))
         {
             var _langNow = $e.pathNames.shift();
-            trace(":) got lang: " + _langNow);
         } else {
-            trace("no lang!");
+            //trace("no lang!");
         }
 
         structureDataToViewState($e.pathNames, $e.path,Model.SECOND_VIEW);
