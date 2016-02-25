@@ -1,11 +1,10 @@
 ﻿var PageManager = EventDispatcher.extend({
 
-    init: function($elem, $level, $autoFirstPage, $atOnce, $viewId, $data) {
+    init: function($level, $autoFirstPage, $atOnce, $viewId, $data) {
         $level = typeof $level !== 'undefined' ? $level : 0;
         $autoFirstPage = typeof $autoFirstPage !== 'undefined' ? $autoFirstPage : false;
         $atOnce = typeof $atOnce !== 'undefined' ? $atOnce : false;
         $viewId = typeof $viewId !== 'undefined' ? $viewId : Model.DEFAULT_VIEW;
-
         this._level = $level;
         this._key = Math.random() * 100000000000000000;
         this._page;
@@ -19,10 +18,11 @@
         this._atOnce = $atOnce;
         this._viewId = $viewId;
         this._data = $data;
-        this._elem = $elem;
+        this._elem = null;
     },
 
-    start: function() {
+    start: function($elem) {
+        this._elem = $elem;
         Model.addPageManager(this, this._level, this._viewId);
         Model.setViewState(Model.getViewState(this._viewId), this._viewId);
         if (Model.getViewState(this._viewId)[this._level - 1]) this._pageURL = Model.getViewState(this._viewId)[this._level - 1].fullUrl;

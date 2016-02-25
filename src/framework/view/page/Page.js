@@ -40,12 +40,16 @@
         this._container.setAttribute('Page', this._data.url);
 
         this._elem.appendChild(this._container);
-        this._pageManager = new window[this._pageManagerClass](this._container, this._data.structureLevel + 1, true, Utils.stringToBoolean(this._data.atOnce), this.getViewId(), this._data);
-        this._pageManager.start();
+        this._pageManager = new window[this._pageManagerClass](this._data.structureLevel + 1, true, Utils.stringToBoolean(this._data.atOnce), this.getViewId(), this._data);
+        
+        this.startPageManager();
+
         this._pageManager.addEventListener(PageEvent.ON_PAGE_MANAGER_CLEAR, this.pageManagerClearHandler, this);
-
-
         this.initContent();
+    },
+
+    startPageManager: function() {
+        this._pageManager.start(this._container);
     },
 
     initContent: function() {
@@ -76,7 +80,7 @@
     pageManagerClearHandler: function(e) {
         if (this._pageManager) {
             this._pageManager.removeEventListener(PageEvent.ON_PAGE_MANAGER_CLEAR, this.pageManagerClearHandler, this);
-
+            if(this._container.parentNode)this._container.parentNode.removeChild(this._container);
             this._pageManager = null;
         }
         this.hideAndDestroy();

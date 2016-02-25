@@ -86,6 +86,7 @@ var Utils = (function(exports) {
 			case "false":
 			case "no":
 			case "undefined":
+			case undefined:
 				return false;
 			default:
 				return typeof($str) != undefined;
