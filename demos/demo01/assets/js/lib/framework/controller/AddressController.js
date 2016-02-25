@@ -7,13 +7,12 @@
 
     function AddressController() {}
 
-    function init($trackingString,$useHistoryApi) {
+    function init($trackingString, $prefix) {
         _trackingString = $trackingString || "";
-
+        HistoryAddress.setPrefix($prefix || "")
 
         HistoryAddress.addEventListener(HistoryAddressEvent.CHANGE, handleHistoryController);
         SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
-
 
         ViewAddress.addEventListener(ViewAddressEvent.CHANGE, handleViewAddress);
 
@@ -27,15 +26,14 @@
       var _oldParams = Model.getParameters();
       $e.parameters.string = String($e.value).split("?")[1] || "";
       Model.setParameters($e.parameters);
-
-      if (Model.urlLangs && $e.pathNames.length && Model.isLangAvailable($e.pathNames[0]))
+      var _names = HistoryAddress.removePrefix($e.pathNames);
+      if (Model.urlLangs && _names.length && Model.isLangAvailable(_names[0]))
       {
-          var _langNow = $e.pathNames.shift();
+          var _langNow = _names.shift();
       } else {
           //trace("no lang!");
       }
-
-      structureDataToViewState($e.pathNames, $e.path);
+      structureDataToViewState(_names, $e.path);
 
       if (_oldParams != Model.getParameters().string) Model.dispatchEvent(new CEvent(ModelEvent.PARAMETERS_CHANGED));
 
@@ -46,11 +44,9 @@
             // TO DO - ViewAddress parameters
             // $e.parameters.string = String($e.value).split("?")[1] || ""
             // Model.setParameters($e.parameters, ViewAddress.getViewID());
-            // trace("ViewAddress.getViewID() "+ViewAddress.getViewID())
             var _oldParams = Model.getParameters(ViewAddress.getViewID());
             $e.parameters.string = String($e.value).split("?")[1] || "";
             Model.setParameters($e.parameters, ViewAddress.getViewID());
-
             structureDataToViewState($e.pathNames, $e.path, ViewAddress.getViewID());
         }
     }
@@ -66,7 +62,6 @@
         } else {
             //trace("no lang!");
         }
-
         structureDataToViewState($e.pathNames, $e.path,Model.SECOND_VIEW);
 
         if (_oldParams != Model.getParameters().string) Model.dispatchEvent(new CEvent(ModelEvent.PARAMETERS_CHANGED));
@@ -109,7 +104,6 @@
         $viewId = typeof $viewId !== 'undefined' ? $viewId : Model.DEFAULT_VIEW;
         var _tempObj = Model.getStructureData($viewId);
         var _newViewState = [];
-
         for (var i = 0; i < $path.length; i++) {
             if (_tempObj) {
                 if (getChildren($path[i], _tempObj)) {
