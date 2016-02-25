@@ -1,0 +1,26 @@
+{
+  "name": "FlashOvy",
+  "version": "0.2.2",
+  "description": "FlashOvyFramework",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "blah"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yvOvy/FlashOvy"
+  },
+  "keywords": [
+    "js"
+  ],
+  "author": "yvOvy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yvOvy/FlashOvy/issues"
+  },
+  "homepage": "https://github.com/yvOvy/FlashOvy",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-uglify": "^0.11.1"
+  }
+}
